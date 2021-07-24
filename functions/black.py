@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
 from PIL import Image, ImageDraw, ImageFont
-import arabic_reshaper
-import bidi.algorithm
 from PIL import Image, ImageFilter
 import textwrap
 import glob
@@ -99,12 +97,11 @@ async def rqaa_B (client, message):
                 width, height = font.getsize(line)
                 yy = (w - width) / 2
 
-                yy = yy + 140
+                
                 print(yy)
                 print(width, height)
                 print(len(lines))
-                #stext = arabic_reshaper.reshape(line)
-                text1 = bidi.algorithm.get_display(line, encoding="utf-8")
+               
 
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
@@ -112,9 +109,9 @@ async def rqaa_B (client, message):
                 edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "box_blur.png"
 
                 draw = ImageDraw.Draw(im)
-                draw.multiline_text((yy, y_text), text1, fill=(0, 0, 0), font=font, align="right")
+                draw.multiline_text((yy, y_text), line, fill=(0, 0, 0), font=font, align="right")
                 im.save(edit_img_loc, quality=100)
-                y_text += (height * 1.2)
+                y_text += (height * 1.1)
             await ms.edit("يتم التحميل ...")
             await ms.delete()
             await app.send_chat_action(chat_id=chat_id, action="upload_photo")
@@ -153,12 +150,11 @@ async def rqaa2_B (client, message):
                 width, height = font.getsize(line)
                 yy = (w - width) / 2
 
-                yy = yy + 140
+                
                 print(yy)
                 print(width, height)
                 print(len(lines))
-                #stext = arabic_reshaper.reshape(line)
-                #text1 = bidi.algorithm.get_display(stext, encoding="utf-8")
+                
 
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
@@ -206,12 +202,11 @@ async def qran_B  (client, message):
                 width, height = font.getsize(line)
                 yy = (w - width) / 2
 
-                yy = yy + 130
+              
                 print(yy)
                 print(width, height)
                 print(len(lines))
-                stext = arabic_reshaper.reshape(line)
-                text1 = bidi.algorithm.get_display(stext, encoding="utf-8")
+                
 
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
@@ -219,7 +214,7 @@ async def qran_B  (client, message):
                 edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "box_blur.png"
 
                 draw = ImageDraw.Draw(im)
-                draw.multiline_text((yy, y_text), text1, fill=(0, 0, 0), font=font, align="right")
+                draw.multiline_text((yy, y_text), line, fill=(0, 0, 0), font=font, align="right")
                 im.save(edit_img_loc, quality=100)
                 y_text += height
             await ms.edit("يتم التحميل ...")
@@ -259,12 +254,11 @@ async def tbaa_B (client, message):
                 width, height = font.getsize(line)
                 yy = (w - width) / 2
 
-                yy = yy + 130
+                
                 print(yy)
                 print(width, height)
                 print(len(lines))
-                stext = arabic_reshaper.reshape(line)
-                text1 = bidi.algorithm.get_display(stext, encoding="utf-8")
+                
 
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
@@ -272,7 +266,7 @@ async def tbaa_B (client, message):
                 edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "box_blur.png"
 
                 draw = ImageDraw.Draw(im)
-                draw.multiline_text((yy, y_text), text1, fill=(0, 0, 0), font=font, align="right")
+                draw.multiline_text((yy, y_text), line, fill=(0, 0, 0), font=font, align="right")
                 im.save(edit_img_loc, quality=100)
                 y_text += height
             await ms.edit("يتم التحميل ...")
@@ -313,12 +307,11 @@ async def hsha_B (client, message):
                 width, height = font.getsize(line)
                 yy = (w - width) / 2
 
-                yy = yy + 50
+                
                 print(yy)
                 print(width, height)
                 print(len(lines))
-                stext = arabic_reshaper.reshape(line)
-                text1 = bidi.algorithm.get_display(stext, encoding="utf-8")
+                
 
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
@@ -326,7 +319,7 @@ async def hsha_B (client, message):
                 edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "box_blur.png"
 
                 draw = ImageDraw.Draw(im)
-                draw.multiline_text((yy, y_text), text1, fill=(0, 0, 0), font=font, align="right")
+                draw.multiline_text((yy, y_text), line, fill=(0, 0, 0), font=font, align="right")
                 im.save(edit_img_loc, quality=100)
                 y_text += height
             await ms.edit("يتم التحميل ...")
@@ -366,12 +359,11 @@ async def qyass_B (client, message):
                 width, height = font.getsize(line)
                 yy = (w - width) / 2
 
-                yy = yy + 110
+                
                 print(yy)
                 print(width, height)
                 print(len(lines))
-                stext = arabic_reshaper.reshape(line)
-                text1 = bidi.algorithm.get_display(stext, encoding="utf-8")
+                
 
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
@@ -379,7 +371,7 @@ async def qyass_B (client, message):
                 edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "box_blur.png"
 
                 draw = ImageDraw.Draw(im)
-                draw.multiline_text((yy, y_text), text1, fill=(0, 0, 0), font=font, align="right")
+                draw.multiline_text((yy, y_text), line, fill=(0, 0, 0), font=font, align="right")
                 im.save(edit_img_loc, quality=100)
                 y_text += height
             await ms.edit("يتم التحميل ...")
@@ -421,12 +413,11 @@ async def qyass2_B (client, message):
                 width, height = font.getsize(line)
                 yy = (w - width) / 2
 
-                yy = yy + 110
+               
                 print(yy)
                 print(width, height)
                 print(len(lines))
-                stext = arabic_reshaper.reshape(line)
-                text1 = bidi.algorithm.get_display(stext, encoding="utf-8")
+               
 
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
@@ -434,7 +425,7 @@ async def qyass2_B (client, message):
                 edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "box_blur.png"
 
                 draw = ImageDraw.Draw(im)
-                draw.multiline_text((yy, y_text), text1, fill=(0, 0, 0), font=font, align="right")
+                draw.multiline_text((yy, y_text), line, fill=(0, 0, 0), font=font, align="right")
                 im.save(edit_img_loc, quality=100)
                 y_text += height
             await ms.edit("يتم التحميل ...")
@@ -475,12 +466,11 @@ async def hur_B(client, message):
                 width, height = font.getsize(line)
                 yy = (w - width) / 2
 
-                yy = yy + 190
+               
                 print(yy)
                 print(width, height)
                 print(len(lines))
-                stext = arabic_reshaper.reshape(line)
-                text1 = bidi.algorithm.get_display(stext, encoding="utf-8")
+               
 
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
@@ -488,7 +478,7 @@ async def hur_B(client, message):
                 edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "box_blur.png"
 
                 draw = ImageDraw.Draw(im)
-                draw.multiline_text((yy, y_text), text1, fill=(0, 0, 0), font=font, align="right")
+                draw.multiline_text((yy, y_text), line, fill=(0, 0, 0), font=font, align="right")
                 im.save(edit_img_loc, quality=100)
                 y_text += height
             await ms.edit("يتم التحميل ...")
@@ -529,12 +519,10 @@ async def hur2_B(client, message):
                 width, height = font.getsize(line)
                 yy = (w - width) / 2
 
-                yy = yy + 100
                 print(yy)
                 print(width, height)
                 print(len(lines))
-                stext = arabic_reshaper.reshape(line)
-                text1 = bidi.algorithm.get_display(stext, encoding="utf-8")
+                
 
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
@@ -542,7 +530,7 @@ async def hur2_B(client, message):
                 edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "box_blur.png"
 
                 draw = ImageDraw.Draw(im)
-                draw.multiline_text((yy, y_text), text1, fill=(0, 0, 0), font=font, align="right")
+                draw.multiline_text((yy, y_text), line, fill=(0, 0, 0), font=font, align="right")
                 im.save(edit_img_loc, quality=100)
                 y_text += height
             await ms.edit("يتم التحميل ...")
@@ -582,20 +570,17 @@ async def alanat_B(client, message):
                 width, height = font.getsize(line)
                 yy = (w - width) / 2
 
-                yy = yy + 140
                 print(yy)
                 print(width, height)
                 print(len(lines))
-                stext = arabic_reshaper.reshape(line)
-                text1 = bidi.algorithm.get_display(stext, encoding="utf-8")
-
+               
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
                 download_location = "./DOWNLOADS" + "/" + userid + "/" + userid + ".png"
                 edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "box_blur.png"
 
                 draw = ImageDraw.Draw(im)
-                draw.multiline_text((yy, y_text), text1, fill=(0, 0, 0), font=font, align="right")
+                draw.multiline_text((yy, y_text), line, fill=(0, 0, 0), font=font, align="right")
                 im.save(edit_img_loc, quality=100)
                 y_text += height
             await ms.edit("يتم التحميل ...")
@@ -636,12 +621,10 @@ async def alanat2_B(client, message):
                 width, height = font.getsize(line)
                 yy = (w - width) / 2
 
-                yy = yy + 240
+                
                 print(yy)
                 print(width, height)
                 print(len(lines))
-                stext = arabic_reshaper.reshape(line)
-                text1 = bidi.algorithm.get_display(stext, encoding="utf-8")
 
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
@@ -649,7 +632,7 @@ async def alanat2_B(client, message):
                 edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "box_blur.png"
 
                 draw = ImageDraw.Draw(im)
-                draw.multiline_text((yy, y_text), text1, fill=(0, 0, 0), font=font, align="center")
+                draw.multiline_text((yy, y_text), line, fill=(0, 0, 0), font=font, align="center")
                 im.save(edit_img_loc, quality=100)
                 y_text += height
             await ms.edit("يتم التحميل ...")
