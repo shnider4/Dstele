@@ -51,7 +51,7 @@ async def amere_B (client, message):
              print(width, height)
              print(len(lines))
              stext = arabic_reshaper.reshape(line)
-             text1 = bidi.algorithm.get_display(stext, encoding="utf-8")
+             #text1 = bidi.algorithm.get_display(stext, encoding="utf-8")
 
              if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                  os.makedirs(f"./DOWNLOADS/{userid}")
@@ -59,7 +59,7 @@ async def amere_B (client, message):
              edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "box_blur.png"
 
              draw = ImageDraw.Draw(im)
-             draw.multiline_text((yy, y_text), text1, fill=(0, 0, 0), font=font, align="right")
+             draw.multiline_text((yy, y_text), stext, fill=(0, 0, 0), font=font, align="right")
              im.save(edit_img_loc, quality=100)
              y_text += height
          await ms.edit("يتم التحميل ...")
@@ -105,8 +105,8 @@ async def rqaa_B (client, message):
                 print(yy)
                 print(width, height)
                 print(len(lines))
-                stext = arabic_reshaper.reshape(line)
-                text1 = bidi.algorithm.get_display(stext, encoding="utf-8")
+                #stext = arabic_reshaper.reshape(line)
+                text1 = bidi.algorithm.get_display(line, encoding="utf-8")
 
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
@@ -159,8 +159,8 @@ async def rqaa2_B (client, message):
                 print(yy)
                 print(width, height)
                 print(len(lines))
-                stext = arabic_reshaper.reshape(line)
-                text1 = bidi.algorithm.get_display(stext, encoding="utf-8")
+                #stext = arabic_reshaper.reshape(line)
+                #text1 = bidi.algorithm.get_display(stext, encoding="utf-8")
 
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
@@ -168,7 +168,7 @@ async def rqaa2_B (client, message):
                 edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "box_blur.png"
 
                 draw = ImageDraw.Draw(im)
-                draw.multiline_text((yy, y_text), text1, fill=(0, 0, 0), font=font, align="center")
+                draw.multiline_text((yy, y_text), line, fill=(0, 0, 0), font=font, align="center")
                 im.save(edit_img_loc, quality=100)
                 y_text += (height * 2)
             await ms.edit("يتم التحميل ...")
