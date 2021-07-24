@@ -160,7 +160,7 @@ async def rqaa2_W (client, message):
                 draw = ImageDraw.Draw(im)
                 draw.multiline_text((yy, y_text), line, fill=(255, 255, 255), font=font, align="center")
                 im.save(edit_img_loc, quality=100)
-                y_text += (height * 2)
+                y_text += height 
             await ms.edit("يتم التحميل ...")
             await ms.delete()
             await app.send_chat_action(chat_id=chat_id, action="upload_photo")
