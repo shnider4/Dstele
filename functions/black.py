@@ -22,7 +22,7 @@ async def amere_B (client, message):
       chunk = bg[i:i + 11]
 
       for photo in chunk:
-         ms = await app.send_message(chat_id, "يتم التحميل ....")
+         ms = await app.send_message(chat_id=userid, "يتم التحميل ....")
 
          im = Image.open(photo)
          print(im)
@@ -60,8 +60,9 @@ async def amere_B (client, message):
              y_text += height
          await ms.edit("يتم التحميل ...")
          await ms.delete()
-         await app.send_chat_action(chat_id=chat_id,action="upload_photo")
-         await app.send_photo(chat_id, photo=edit_img_loc, caption="_")
+         userid =int(userid)
+         await app.send_chat_action(chat_id = userid,action="upload_photo")
+         await app.send_photo(chat_id = userid, photo=edit_img_loc, caption="_")
 
 
 
@@ -75,7 +76,7 @@ async def rqaa_B (client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id, "يتم التحميل ....")
+            ms = await app.send_message(chat_id=userid, "يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -114,8 +115,9 @@ async def rqaa_B (client, message):
                 y_text += (height * 1.1)
             await ms.edit("يتم التحميل ...")
             await ms.delete()
-            await app.send_chat_action(chat_id=chat_id, action="upload_photo")
-            await app.send_photo(chat_id, photo=edit_img_loc, caption="_")
+            userid =int(userid)
+            await app.send_chat_action(chat_id = userid,action="upload_photo")
+            await app.send_photo(chat_id = userid, photo=edit_img_loc, caption="_")
 
 
 async def rqaa2_B (client, message):
@@ -128,7 +130,7 @@ async def rqaa2_B (client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id, "يتم التحميل ....")
+            ms = await app.send_message(chat_id= userid=userid, "يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -167,8 +169,9 @@ async def rqaa2_B (client, message):
                 y_text += height 
             await ms.edit("يتم التحميل ...")
             await ms.delete()
-            await app.send_chat_action(chat_id=chat_id, action="upload_photo")
-            await app.send_photo(chat_id, photo=edit_img_loc, caption="_")
+            userid =int(userid)
+            await app.send_chat_action(chat_id = userid,action="upload_photo")
+            await app.send_photo(chat_id = userid, photo=edit_img_loc, caption="_")
 
 
 async def qran_B  (client, message):
@@ -181,7 +184,7 @@ async def qran_B  (client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id, "يتم التحميل ....")
+            ms = await app.send_message(chat_id=userid, "يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -219,8 +222,9 @@ async def qran_B  (client, message):
                 y_text += height
             await ms.edit("يتم التحميل ...")
             await ms.delete()
-            await app.send_chat_action(chat_id=chat_id, action="upload_photo")
-            await app.send_photo(chat_id, photo=edit_img_loc, caption="_")
+            userid =int(userid)
+            await app.send_chat_action(chat_id = userid,action="upload_photo")
+            await app.send_photo(chat_id = userid, photo=edit_img_loc, caption="_")
 
 async def tbaa_B (client, message):
     chat_id = message.chat.id
@@ -232,7 +236,7 @@ async def tbaa_B (client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id, "يتم التحميل ....")
+            ms = await app.send_message(chat_id=userid, "يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -271,8 +275,9 @@ async def tbaa_B (client, message):
                 y_text += height
             await ms.edit("يتم التحميل ...")
             await ms.delete()
-            await app.send_chat_action(chat_id=chat_id, action="upload_photo")
-            await app.send_photo(chat_id, photo=edit_img_loc, caption="_")
+            userid =int(userid)
+            await app.send_chat_action(chat_id = userid,action="upload_photo")
+            await app.send_photo(chat_id = userid, photo=edit_img_loc, caption="_")
 
 
 async def hsha_B (client, message):
@@ -285,7 +290,7 @@ async def hsha_B (client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id, "يتم التحميل ....")
+            ms = await app.send_message(chat_id=userid, "يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -324,8 +329,9 @@ async def hsha_B (client, message):
                 y_text += height
             await ms.edit("يتم التحميل ...")
             await ms.delete()
-            await app.send_chat_action(chat_id=chat_id, action="upload_photo")
-            await app.send_photo(chat_id, photo=edit_img_loc, caption="_")
+            userid =int(userid)
+            await app.send_chat_action(chat_id = userid,action="upload_photo")
+            await app.send_photo(chat_id = userid, photo=edit_img_loc, caption="_")
 
 async def qyass_B (client, message):
     chat_id = message.chat.id
@@ -337,7 +343,7 @@ async def qyass_B (client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id, "يتم التحميل ....")
+            ms = await app.send_message(chat_id=userid, "يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -376,8 +382,9 @@ async def qyass_B (client, message):
                 y_text += height
             await ms.edit("يتم التحميل ...")
             await ms.delete()
-            await app.send_chat_action(chat_id=chat_id, action="upload_photo")
-            await app.send_photo(chat_id, photo=edit_img_loc, caption="_")
+            userid =int(userid)
+            await app.send_chat_action(chat_id = userid,action="upload_photo")
+            await app.send_photo(chat_id = userid, photo=edit_img_loc, caption="_")
 
 
 
@@ -391,7 +398,7 @@ async def qyass2_B (client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id, "يتم التحميل ....")
+            ms = await app.send_message(chat_id=userid, "يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -430,8 +437,9 @@ async def qyass2_B (client, message):
                 y_text += height
             await ms.edit("يتم التحميل ...")
             await ms.delete()
-            await app.send_chat_action(chat_id=chat_id, action="upload_photo")
-            await app.send_photo(chat_id, photo=edit_img_loc, caption="_")
+            userid =int(userid)
+            await app.send_chat_action(chat_id = userid,action="upload_photo")
+            await app.send_photo(chat_id = userid, photo=edit_img_loc, caption="_")
 
 
 async def hur_B(client, message):
@@ -444,7 +452,7 @@ async def hur_B(client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id, "يتم التحميل ....")
+            ms = await app.send_message(chat_id=userid, "يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -483,8 +491,9 @@ async def hur_B(client, message):
                 y_text += height
             await ms.edit("يتم التحميل ...")
             await ms.delete()
-            await app.send_chat_action(chat_id=chat_id, action="upload_photo")
-            await app.send_photo(chat_id, photo=edit_img_loc, caption="_")
+            userid =int(userid)
+            await app.send_chat_action(chat_id = userid,action="upload_photo")
+            await app.send_photo(chat_id = userid, photo=edit_img_loc, caption="_")
 
 
 async def hur2_B(client, message):
@@ -497,7 +506,7 @@ async def hur2_B(client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id, "يتم التحميل ....")
+            ms = await app.send_message(chat_id=userid, "يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -535,8 +544,9 @@ async def hur2_B(client, message):
                 y_text += height
             await ms.edit("يتم التحميل ...")
             await ms.delete()
-            await app.send_chat_action(chat_id=chat_id, action="upload_photo")
-            await app.send_photo(chat_id, photo=edit_img_loc, caption="_")
+            userid =int(userid)
+            await app.send_chat_action(chat_id = userid,action="upload_photo")
+            await app.send_photo(chat_id = userid, photo=edit_img_loc, caption="_")
 
 
 async def alanat_B(client, message):
@@ -549,7 +559,7 @@ async def alanat_B(client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id, "يتم التحميل ....")
+            ms = await app.send_message(chat_id=userid, "يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -585,8 +595,9 @@ async def alanat_B(client, message):
                 y_text += height
             await ms.edit("يتم التحميل ...")
             await ms.delete()
-            await app.send_chat_action(chat_id=chat_id, action="upload_photo")
-            await app.send_photo(chat_id, photo=edit_img_loc, caption="_")
+            userid =int(userid)
+            await app.send_chat_action(chat_id = userid,action="upload_photo")
+            await app.send_photo(chat_id = userid, photo=edit_img_loc, caption="_")
 
 
 async def alanat2_B(client, message):
@@ -599,7 +610,7 @@ async def alanat2_B(client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id, "يتم التحميل ....")
+            ms = await app.send_message(chat_id=userid, "يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -637,6 +648,7 @@ async def alanat2_B(client, message):
                 y_text += height
             await ms.edit("يتم التحميل ...")
             await ms.delete()
-            await app.send_chat_action(chat_id=chat_id, action="upload_photo")
-            await app.send_photo(chat_id, photo=edit_img_loc, caption="_")
+            userid =int(userid)
+            await app.send_chat_action(chat_id = userid,action="upload_photo")
+            await app.send_photo(chat_id = userid, photo=edit_img_loc, caption="_")
 
