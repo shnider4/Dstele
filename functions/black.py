@@ -138,7 +138,7 @@ async def rqaa2_B (client, message):
             lines = textwrap.wrap(text, width=30)
             await ms.edit("يتم التحميل .....")
             for line in lines:
-                dir_font = "./fonts/rqaa2.ttf"
+                dir_font = "./fonts/RQAA2.ttf"
                 size_font = 100
                 if len(lines) == 1:
                     size_font = size_font + 50
