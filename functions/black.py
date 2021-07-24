@@ -130,7 +130,7 @@ async def rqaa2_B (client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id= userid=userid, text="يتم التحميل ....")
+            ms = await app.send_message(chat_id=userid, text="يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
