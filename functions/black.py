@@ -22,7 +22,7 @@ async def amere_B (client, message):
       chunk = bg[i:i + 11]
 
       for photo in chunk:
-         ms = await app.send_message(chat_id=userid, "يتم التحميل ....")
+         ms = await app.send_message(chat_id=userid, text="يتم التحميل ....")
 
          im = Image.open(photo)
          print(im)
@@ -76,7 +76,7 @@ async def rqaa_B (client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id=userid, "يتم التحميل ....")
+            ms = await app.send_message(chat_id=userid, text="يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -130,7 +130,7 @@ async def rqaa2_B (client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id= userid=userid, "يتم التحميل ....")
+            ms = await app.send_message(chat_id= userid=userid, text="يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -184,7 +184,7 @@ async def qran_B  (client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id=userid, "يتم التحميل ....")
+            ms = await app.send_message(chat_id=userid, text="يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -236,7 +236,7 @@ async def tbaa_B (client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id=userid, "يتم التحميل ....")
+            ms = await app.send_message(chat_id=userid, text="يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -290,7 +290,7 @@ async def hsha_B (client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id=userid, "يتم التحميل ....")
+            ms = await app.send_message(chat_id=userid, text="يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -343,7 +343,7 @@ async def qyass_B (client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id=userid, "يتم التحميل ....")
+            ms = await app.send_message(chat_id=userid,text="يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -398,7 +398,7 @@ async def qyass2_B (client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id=userid, "يتم التحميل ....")
+            ms = await app.send_message(chat_id=userid, text="يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -452,7 +452,7 @@ async def hur_B(client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id=userid, "يتم التحميل ....")
+            ms = await app.send_message(chat_id=userid, text="يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -506,7 +506,7 @@ async def hur2_B(client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id=userid, "يتم التحميل ....")
+            ms = await app.send_message(chat_id=userid, text="يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -559,7 +559,7 @@ async def alanat_B(client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id=userid, "يتم التحميل ....")
+            ms = await app.send_message(chat_id=userid, text="يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -610,7 +610,7 @@ async def alanat2_B(client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id=userid, "يتم التحميل ....")
+            ms = await app.send_message(chat_id=userid, text="يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
