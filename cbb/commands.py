@@ -4,7 +4,7 @@ from  config import OWNER_ID
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from pyrogram import Client, filters
 from pyrogram.errors import UserNotParticipant, UserBannedInChannel
-from main import app
+from __main__ import app
 
 @app.on_message(filters.private & filters.command(["start"]))
 async def mak (client, message):
