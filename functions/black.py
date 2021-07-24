@@ -6,7 +6,7 @@ import bidi.algorithm
 from PIL import Image, ImageFilter
 import textwrap
 import glob
-from main  import app
+from __main__ import app
 
 
 
