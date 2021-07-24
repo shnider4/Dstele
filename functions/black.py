@@ -7,66 +7,7 @@ import glob
 from __main__ import app
 
 
-
-
-
-
-async def amere_B (client, message):
-
-   chat_id = message.chat.id
-   userid =str( message.from_user["id"])
-   text =message.reply_to_message.text
-   dir_bg = "./bg"
-   bg = glob.glob(f"{dir_bg}/*.png")
-   for i in range(0, len(bg), 11):
-      chunk = bg[i:i + 11]
-
-      for photo in chunk:
-         ms = await app.send_message(chat_id=userid, text="يتم التحميل ....")
-
-         im = Image.open(photo)
-         print(im)
-         w, h = im.size
-         y_text = 180
-         x_text = w
-         lines = textwrap.wrap(text, width=30)
-         await ms.edit("يتم التحميل .....")
-         for line in lines:
-             dir_font = "./fonts/Amiri.ttf"
-             size_font =100
-             if len(lines) == 1:
-                 size_font = size_font +50
-                 y_text = y_text + 80
-             else:
-                 size_font = 105
-
-             font = ImageFont.truetype(dir_font, size_font)
-             width, height = font.getsize(line)
-             yy = (w - width) / 2
-
-             
-             print(yy)
-             print(width, height)
-             print(len(lines))
-
-             if not os.path.isdir(f"./DOWNLOADS/{userid}"):
-                 os.makedirs(f"./DOWNLOADS/{userid}")
-             download_location = "./DOWNLOADS" + "/" + userid + "/" + userid + ".png"
-             edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "box_blur.png"
-
-             draw = ImageDraw.Draw(im)
-             draw.multiline_text((yy, y_text), line, fill=(0, 0, 0), font=font, align="right")
-             im.save(edit_img_loc, quality=100)
-             y_text += height
-         await ms.edit("يتم التحميل ...")
-         await ms.delete()
-         userid =int(userid)
-         await app.send_chat_action(chat_id = userid,action="upload_photo")
-         await app.send_photo(chat_id = userid, photo=edit_img_loc, caption="_")
-
-
-
-async def rqaa_B (client, message):
+async def amere_B(client, message):
     chat_id = message.chat.id
     userid = str(message.from_user["id"])
     text = message.reply_to_message.text
@@ -76,7 +17,59 @@ async def rqaa_B (client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id=userid, text="يتم التحميل ....")
+            ms = await message.reply_to_message.reply_text("يتم التحميل ....")
+
+            im = Image.open(photo)
+            print(im)
+            w, h = im.size
+            y_text = 180
+            x_text = w
+            lines = textwrap.wrap(text, width=30)
+            
+            for line in lines:
+                dir_font = "./fonts/Amiri.ttf"
+                size_font = 100
+                if len(lines) == 1:
+                    size_font = size_font + 50
+                    y_text = y_text + 80
+                else:
+                    size_font = 105
+
+                font = ImageFont.truetype(dir_font, size_font)
+                width, height = font.getsize(line)
+                yy = (w - width) / 2
+
+                print(yy)
+                print(width, height)
+                print(len(lines))
+
+                if not os.path.isdir(f"./DOWNLOADS/{userid}"):
+                    os.makedirs(f"./DOWNLOADS/{userid}")
+                edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "qad3im.png"
+
+                draw = ImageDraw.Draw(im)
+                draw.multiline_text((yy, y_text), line, fill=(0, 0, 0), font=font, align="right")
+                im.save(edit_img_loc, quality=100)
+                y_text += height
+            await ms.edit("يتم التحميل ...")
+            await message.reply_chat_action("upload_photo")
+            await ms.delete()
+            await message.reply_to_message.reply_photo(edit_img_loc,caption="_")
+            
+            
+
+
+async def rqaa_B(client, message):
+    chat_id = message.chat.id
+    userid = str(message.from_user["id"])
+    text = message.reply_to_message.text
+    dir_bg = "./bg"
+    bg = glob.glob(f"{dir_bg}/*.png")
+    for i in range(0, len(bg), 11):
+        chunk = bg[i:i + 11]
+
+        for photo in chunk:
+            ms = await message.reply_to_message.reply_text("يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -90,7 +83,7 @@ async def rqaa_B (client, message):
                 size_font = 100
                 if len(lines) == 1:
                     size_font = size_font + 70
-                    y_text = y_text +120
+                    y_text = y_text + 120
                 else:
                     size_font = 130
 
@@ -98,29 +91,26 @@ async def rqaa_B (client, message):
                 width, height = font.getsize(line)
                 yy = (w - width) / 2
 
-                
                 print(yy)
                 print(width, height)
                 print(len(lines))
-               
 
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
                 download_location = "./DOWNLOADS" + "/" + userid + "/" + userid + ".png"
-                edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "box_blur.png"
+                edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "qad3im.png"
 
                 draw = ImageDraw.Draw(im)
                 draw.multiline_text((yy, y_text), line, fill=(0, 0, 0), font=font, align="right")
                 im.save(edit_img_loc, quality=100)
                 y_text += (height * 1.1)
             await ms.edit("يتم التحميل ...")
+            await message.reply_chat_action("upload_photo")
             await ms.delete()
-            userid =int(userid)
-            await app.send_chat_action(chat_id = userid,action="upload_photo")
-            await app.send_photo(chat_id = userid, photo=edit_img_loc, caption="_")
+            await message.reply_to_message.reply_photo(edit_img_loc, caption="_")
 
 
-async def rqaa2_B (client, message):
+async def rqaa2_B(client, message):
     chat_id = message.chat.id
     userid = str(message.from_user["id"])
     text = message.reply_to_message.text
@@ -130,7 +120,7 @@ async def rqaa2_B (client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id=userid, text="يتم التحميل ....")
+            ms = await message.reply_to_message.reply_text("يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -152,29 +142,26 @@ async def rqaa2_B (client, message):
                 width, height = font.getsize(line)
                 yy = (w - width) / 2
 
-                
                 print(yy)
                 print(width, height)
                 print(len(lines))
-                
 
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
                 download_location = "./DOWNLOADS" + "/" + userid + "/" + userid + ".png"
-                edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "box_blur.png"
+                edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "qad3im.png"
 
                 draw = ImageDraw.Draw(im)
                 draw.multiline_text((yy, y_text), line, fill=(0, 0, 0), font=font, align="center")
                 im.save(edit_img_loc, quality=100)
-                y_text += height 
+                y_text += height
             await ms.edit("يتم التحميل ...")
+            await message.reply_chat_action("upload_photo")
             await ms.delete()
-            userid =int(userid)
-            await app.send_chat_action(chat_id = userid,action="upload_photo")
-            await app.send_photo(chat_id = userid, photo=edit_img_loc, caption="_")
+            await message.reply_to_message.reply_photo(edit_img_loc, caption="_")
 
 
-async def qran_B  (client, message):
+async def qran_B(client, message):
     chat_id = message.chat.id
     userid = str(message.from_user["id"])
     text = message.reply_to_message.text
@@ -184,7 +171,7 @@ async def qran_B  (client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id=userid, text="يتم التحميل ....")
+            ms = await message.reply_to_message.reply_text("يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -205,28 +192,26 @@ async def qran_B  (client, message):
                 width, height = font.getsize(line)
                 yy = (w - width) / 2
 
-              
                 print(yy)
                 print(width, height)
                 print(len(lines))
-                
 
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
                 download_location = "./DOWNLOADS" + "/" + userid + "/" + userid + ".png"
-                edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "box_blur.png"
+                edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "qad3im.png"
 
                 draw = ImageDraw.Draw(im)
                 draw.multiline_text((yy, y_text), line, fill=(0, 0, 0), font=font, align="right")
                 im.save(edit_img_loc, quality=100)
                 y_text += height
             await ms.edit("يتم التحميل ...")
+            await message.reply_chat_action("upload_photo")
             await ms.delete()
-            userid =int(userid)
-            await app.send_chat_action(chat_id = userid,action="upload_photo")
-            await app.send_photo(chat_id = userid, photo=edit_img_loc, caption="_")
+            await message.reply_to_message.reply_photo(edit_img_loc, caption="_")
 
-async def tbaa_B (client, message):
+
+async def tbaa_B(client, message):
     chat_id = message.chat.id
     userid = str(message.from_user["id"])
     text = message.reply_to_message.text
@@ -236,7 +221,7 @@ async def tbaa_B (client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id=userid, text="يتم التحميل ....")
+            ms = await message.reply_to_message.reply_text("يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -258,29 +243,26 @@ async def tbaa_B (client, message):
                 width, height = font.getsize(line)
                 yy = (w - width) / 2
 
-                
                 print(yy)
                 print(width, height)
                 print(len(lines))
-                
 
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
                 download_location = "./DOWNLOADS" + "/" + userid + "/" + userid + ".png"
-                edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "box_blur.png"
+                edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "qad3im.png"
 
                 draw = ImageDraw.Draw(im)
                 draw.multiline_text((yy, y_text), line, fill=(0, 0, 0), font=font, align="right")
                 im.save(edit_img_loc, quality=100)
                 y_text += height
             await ms.edit("يتم التحميل ...")
+            await message.reply_chat_action("upload_photo")
             await ms.delete()
-            userid =int(userid)
-            await app.send_chat_action(chat_id = userid,action="upload_photo")
-            await app.send_photo(chat_id = userid, photo=edit_img_loc, caption="_")
+            await message.reply_to_message.reply_photo(edit_img_loc, caption="_")
 
 
-async def hsha_B (client, message):
+async def hsha_B(client, message):
     chat_id = message.chat.id
     userid = str(message.from_user["id"])
     text = message.reply_to_message.text
@@ -290,7 +272,7 @@ async def hsha_B (client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id=userid, text="يتم التحميل ....")
+            ms = await message.reply_to_message.reply_text("يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -304,7 +286,7 @@ async def hsha_B (client, message):
                 size_font = 100
                 if len(lines) == 1:
                     size_font = size_font + 50
-                    y_text =y_text +100
+                    y_text = y_text + 100
                 else:
                     size_font = 130
 
@@ -312,28 +294,26 @@ async def hsha_B (client, message):
                 width, height = font.getsize(line)
                 yy = (w - width) / 2
 
-                
                 print(yy)
                 print(width, height)
                 print(len(lines))
-                
 
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
                 download_location = "./DOWNLOADS" + "/" + userid + "/" + userid + ".png"
-                edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "box_blur.png"
+                edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "qad3im.png"
 
                 draw = ImageDraw.Draw(im)
                 draw.multiline_text((yy, y_text), line, fill=(0, 0, 0), font=font, align="right")
                 im.save(edit_img_loc, quality=100)
                 y_text += height
             await ms.edit("يتم التحميل ...")
+            await message.reply_chat_action("upload_photo")
             await ms.delete()
-            userid =int(userid)
-            await app.send_chat_action(chat_id = userid,action="upload_photo")
-            await app.send_photo(chat_id = userid, photo=edit_img_loc, caption="_")
+            await message.reply_to_message.reply_photo(edit_img_loc, caption="_")
 
-async def qyass_B (client, message):
+
+async def qyass_B(client, message):
     chat_id = message.chat.id
     userid = str(message.from_user["id"])
     text = message.reply_to_message.text
@@ -343,7 +323,7 @@ async def qyass_B (client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id=userid,text="يتم التحميل ....")
+            ms = await message.reply_to_message.reply_text("يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -357,7 +337,7 @@ async def qyass_B (client, message):
                 size_font = 100
                 if len(lines) == 1:
                     size_font = size_font + 60
-                    y_text =y_text +90
+                    y_text = y_text + 90
                 else:
                     size_font = 140
 
@@ -365,30 +345,26 @@ async def qyass_B (client, message):
                 width, height = font.getsize(line)
                 yy = (w - width) / 2
 
-                
                 print(yy)
                 print(width, height)
                 print(len(lines))
-                
 
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
                 download_location = "./DOWNLOADS" + "/" + userid + "/" + userid + ".png"
-                edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "box_blur.png"
+                edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "qad3im.png"
 
                 draw = ImageDraw.Draw(im)
                 draw.multiline_text((yy, y_text), line, fill=(0, 0, 0), font=font, align="right")
                 im.save(edit_img_loc, quality=100)
                 y_text += height
             await ms.edit("يتم التحميل ...")
+            await message.reply_chat_action("upload_photo")
             await ms.delete()
-            userid =int(userid)
-            await app.send_chat_action(chat_id = userid,action="upload_photo")
-            await app.send_photo(chat_id = userid, photo=edit_img_loc, caption="_")
+            await message.reply_to_message.reply_photo(edit_img_loc, caption="_")
 
 
-
-async def qyass2_B (client, message):
+async def qyass2_B(client, message):
     chat_id = message.chat.id
     userid = str(message.from_user["id"])
     text = message.reply_to_message.text
@@ -398,7 +374,7 @@ async def qyass2_B (client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id=userid, text="يتم التحميل ....")
+            ms = await message.reply_to_message.reply_text("يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -412,7 +388,7 @@ async def qyass2_B (client, message):
                 size_font = 120
                 if len(lines) == 1:
                     size_font = size_font + 50
-                    y_text =  y_text +100
+                    y_text = y_text + 100
                 else:
                     size_font = 130
 
@@ -420,26 +396,23 @@ async def qyass2_B (client, message):
                 width, height = font.getsize(line)
                 yy = (w - width) / 2
 
-               
                 print(yy)
                 print(width, height)
                 print(len(lines))
-               
 
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
                 download_location = "./DOWNLOADS" + "/" + userid + "/" + userid + ".png"
-                edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "box_blur.png"
+                edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "qad3im.png"
 
                 draw = ImageDraw.Draw(im)
                 draw.multiline_text((yy, y_text), line, fill=(0, 0, 0), font=font, align="right")
                 im.save(edit_img_loc, quality=100)
                 y_text += height
             await ms.edit("يتم التحميل ...")
+            await message.reply_chat_action("upload_photo")
             await ms.delete()
-            userid =int(userid)
-            await app.send_chat_action(chat_id = userid,action="upload_photo")
-            await app.send_photo(chat_id = userid, photo=edit_img_loc, caption="_")
+            await message.reply_to_message.reply_photo(edit_img_loc, caption="_")
 
 
 async def hur_B(client, message):
@@ -452,7 +425,7 @@ async def hur_B(client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id=userid, text="يتم التحميل ....")
+            ms = await message.reply_to_message.reply_text("يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -474,26 +447,23 @@ async def hur_B(client, message):
                 width, height = font.getsize(line)
                 yy = (w - width) / 2
 
-               
                 print(yy)
                 print(width, height)
                 print(len(lines))
-               
 
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
                 download_location = "./DOWNLOADS" + "/" + userid + "/" + userid + ".png"
-                edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "box_blur.png"
+                edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "qad3im.png"
 
                 draw = ImageDraw.Draw(im)
                 draw.multiline_text((yy, y_text), line, fill=(0, 0, 0), font=font, align="right")
                 im.save(edit_img_loc, quality=100)
                 y_text += height
             await ms.edit("يتم التحميل ...")
+            await message.reply_chat_action("upload_photo")
             await ms.delete()
-            userid =int(userid)
-            await app.send_chat_action(chat_id = userid,action="upload_photo")
-            await app.send_photo(chat_id = userid, photo=edit_img_loc, caption="_")
+            await message.reply_to_message.reply_photo(edit_img_loc, caption="_")
 
 
 async def hur2_B(client, message):
@@ -506,7 +476,7 @@ async def hur2_B(client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id=userid, text="يتم التحميل ....")
+            ms = await message.reply_to_message.reply_text("يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -531,22 +501,20 @@ async def hur2_B(client, message):
                 print(yy)
                 print(width, height)
                 print(len(lines))
-                
 
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
                 download_location = "./DOWNLOADS" + "/" + userid + "/" + userid + ".png"
-                edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "box_blur.png"
+                edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "qad3im.png"
 
                 draw = ImageDraw.Draw(im)
                 draw.multiline_text((yy, y_text), line, fill=(0, 0, 0), font=font, align="right")
                 im.save(edit_img_loc, quality=100)
                 y_text += height
             await ms.edit("يتم التحميل ...")
+            await message.reply_chat_action("upload_photo")
             await ms.delete()
-            userid =int(userid)
-            await app.send_chat_action(chat_id = userid,action="upload_photo")
-            await app.send_photo(chat_id = userid, photo=edit_img_loc, caption="_")
+            await message.reply_to_message.reply_photo(edit_img_loc, caption="_")
 
 
 async def alanat_B(client, message):
@@ -559,7 +527,7 @@ async def alanat_B(client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id=userid, text="يتم التحميل ....")
+            ms = await message.reply_to_message.reply_text("يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -583,21 +551,20 @@ async def alanat_B(client, message):
                 print(yy)
                 print(width, height)
                 print(len(lines))
-               
+
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
                 download_location = "./DOWNLOADS" + "/" + userid + "/" + userid + ".png"
-                edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "box_blur.png"
+                edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "qad3im.png"
 
                 draw = ImageDraw.Draw(im)
                 draw.multiline_text((yy, y_text), line, fill=(0, 0, 0), font=font, align="right")
                 im.save(edit_img_loc, quality=100)
                 y_text += height
             await ms.edit("يتم التحميل ...")
+            await message.reply_chat_action("upload_photo")
             await ms.delete()
-            userid =int(userid)
-            await app.send_chat_action(chat_id = userid,action="upload_photo")
-            await app.send_photo(chat_id = userid, photo=edit_img_loc, caption="_")
+            await message.reply_to_message.reply_photo(edit_img_loc, caption="_")
 
 
 async def alanat2_B(client, message):
@@ -610,7 +577,7 @@ async def alanat2_B(client, message):
         chunk = bg[i:i + 11]
 
         for photo in chunk:
-            ms = await app.send_message(chat_id=userid, text="يتم التحميل ....")
+            ms = await message.reply_to_message.reply_text("يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
@@ -624,7 +591,7 @@ async def alanat2_B(client, message):
                 size_font = 100
                 if len(lines) == 1:
                     size_font = size_font + 70
-                    y_text = y_text +90
+                    y_text = y_text + 90
                 else:
                     size_font = 150
 
@@ -632,7 +599,6 @@ async def alanat2_B(client, message):
                 width, height = font.getsize(line)
                 yy = (w - width) / 2
 
-                
                 print(yy)
                 print(width, height)
                 print(len(lines))
@@ -640,15 +606,13 @@ async def alanat2_B(client, message):
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
                 download_location = "./DOWNLOADS" + "/" + userid + "/" + userid + ".png"
-                edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "box_blur.png"
+                edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "qad3im.png"
 
                 draw = ImageDraw.Draw(im)
                 draw.multiline_text((yy, y_text), line, fill=(0, 0, 0), font=font, align="center")
                 im.save(edit_img_loc, quality=100)
                 y_text += height
             await ms.edit("يتم التحميل ...")
+            await message.reply_chat_action("upload_photo")
             await ms.delete()
-            userid =int(userid)
-            await app.send_chat_action(chat_id = userid,action="upload_photo")
-            await app.send_photo(chat_id = userid, photo=edit_img_loc, caption="_")
-
+            await message.reply_to_message.reply_photo(edit_img_loc, caption="_")
