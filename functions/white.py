@@ -5,7 +5,7 @@ import arabic_reshaper
 import bidi.algorithm
 import textwrap
 import glob
-from main  import app
+from __main__ import app
 
 async def amere_W (client, message):
 
