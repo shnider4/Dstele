@@ -37,13 +37,13 @@ async def amere_B(client, message):
                 y_text += height
             y_bot = (h / 1.8) + (height / 1.8 * len(lines))
             y_top = (y_text / 1.5 - height) / (len(lines))
-            font = ImageFont.truetype(dir_font, 45)
-            draw.multiline_text((((w - width) /2.8), y_text + 4), "qad3im", fill=(0, 0, 0), font=font,
+            font = ImageFont.truetype(dir_font, 40)
+            draw.multiline_text((((w - width) /2.8), y_text + 2), "qad3im", fill=(0, 0, 0), font=font,
                                 align="right")
             await ms.edit("يتم التحميل ...")
             im.save(edit_img_loc, quality=100)
             xl = 0
-            xr = w - 80
+            xr = w - 40
             box = (xl, y_top, xr, y_bot)  # left, top, right, bottom
             cropped_image = im.crop(box)
             cropped_image.save(edit_img_loc, quality=100)
