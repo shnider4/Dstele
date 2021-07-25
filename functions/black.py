@@ -18,7 +18,7 @@ async def amere_B(client, message):
             print(im)
             w, h = im.size
             y_text = 100
-            lines = textwrap.wrap(text, width=30)
+            lines = textwrap.wrap(text, width=40)
             for line in lines:
                 dir_font = "./fonts/Amiri.ttf"
                 size_font = 105
@@ -38,7 +38,7 @@ async def amere_B(client, message):
             y_bot = (h / 1.8) + (height / 1.8 * len(lines))
             y_top = (y_text / 1.5 - height) / (len(lines))
             font = ImageFont.truetype(dir_font, 45)
-            draw.multiline_text((((w - width) /2.8), y_text + 8), "qad3im", fill=(0, 0, 0), font=font,
+            draw.multiline_text((((w - width) /2.8), y_text + 4), "qad3im", fill=(0, 0, 0), font=font,
                                 align="right")
             await ms.edit("يتم التحميل ...")
             im.save(edit_img_loc, quality=100)
