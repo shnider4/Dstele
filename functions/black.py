@@ -36,9 +36,9 @@ async def amere_B(client, message):
                 im.save(edit_img_loc, quality=100)
                 y_text += height
             y_bot = (h / 2) + (height / 1.8 * len(lines))
-            y_top = (y_text / 1.6 - height) / (len(lines))
+            y_top = (y_text / 1.8 - height) / (len(lines))
             font = ImageFont.truetype(dir_font, 45)
-            draw.multiline_text((((w - width) /2.5), y_text - (height / 1.8)), "qad3im", fill=(0, 0, 0), font=font,
+            draw.multiline_text((((w - width) /2.8), y_text - (height / 1.2)), "qad3im", fill=(0, 0, 0), font=font,
                                 align="right")
             await ms.edit("يتم التحميل ...")
             im.save(edit_img_loc, quality=100)
