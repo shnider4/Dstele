@@ -1,13 +1,10 @@
-# -*- coding: utf-8 -*-
 import os
-from PIL import Image, ImageDraw, ImageFont
-from PIL import Image, ImageFilter
 import textwrap
 import glob
-from __main__ import app
-
+from PIL import Image, ImageDraw, ImageFont
 
 async def amere_W(client, message):
+    global edit_img_loc, dir_font, width, height, draw
     chat_id = message.chat.id
     userid = str(message.from_user["id"])
     text = message.reply_to_message.text
@@ -15,102 +12,96 @@ async def amere_W(client, message):
     bg = glob.glob(f"{dir_bg}/*.png")
     for i in range(0, len(bg), 11):
         chunk = bg[i:i + 11]
-
         for photo in chunk:
             ms = await message.reply_to_message.reply_text("يتم التحميل ....")
-
             im = Image.open(photo)
             print(im)
             w, h = im.size
-            y_text = 180
-            x_text = w
+            y_text = 100
             lines = textwrap.wrap(text, width=30)
-
             for line in lines:
                 dir_font = "./fonts/Amiri.ttf"
-                size_font = 100
-                if len(lines) == 1:
-                    size_font = size_font + 50
-                    y_text = y_text + 80
-                else:
-                    size_font = 105
-
+                size_font = 105
                 font = ImageFont.truetype(dir_font, size_font)
                 width, height = font.getsize(line)
                 yy = (w - width) / 2
-
                 print(yy)
                 print(width, height)
                 print(len(lines))
-
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
                 edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "qad3im.png"
-
                 draw = ImageDraw.Draw(im)
                 draw.multiline_text((yy, y_text), line, fill=(255, 255, 255), font=font, align="right")
                 im.save(edit_img_loc, quality=100)
                 y_text += height
-            await ms.edit("يتم التحميل ...")
-            await message.reply_chat_action("upload_photo")
-            await ms.delete()
-            await message.reply_to_message.reply_photo(edit_img_loc,caption="_")
-
-
-
-
-async def rqaa_W(client, message):
-    chat_id = message.chat.id
-    userid = str(message.from_user["id"])
-    text = message.reply_to_message.text
-    dir_bg = "./bg"
-    bg = glob.glob(f"{dir_bg}/*.png")
-    for i in range(0, len(bg), 11):
-        chunk = bg[i:i + 11]
-
-        for photo in chunk:
-            ms = await message.reply_to_message.reply_text("يتم التحميل ....")
-
-            im = Image.open(photo)
-            print(im)
-            w, h = im.size
-            y_text = 180
-            x_text = w
-            lines = textwrap.wrap(text, width=30)
-            await ms.edit("يتم التحميل .....")
-            for line in lines:
-                dir_font = "./fonts/rqaa.ttf"
-                size_font = 100
-                if len(lines) == 1:
-                    size_font = size_font + 70
-                    y_text = y_text + 120
-                else:
-                    size_font = 130
-
-                font = ImageFont.truetype(dir_font, size_font)
-                width, height = font.getsize(line)
-                yy = (w - width) / 2
-
-                print(yy)
-                print(width, height)
-                print(len(lines))
-
-                if not os.path.isdir(f"./DOWNLOADS/{userid}"):
-                    os.makedirs(f"./DOWNLOADS/{userid}")
-                download_location = "./DOWNLOADS" + "/" + userid + "/" + userid + ".png"
-                edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "qad3im.png"
-
-                draw = ImageDraw.Draw(im)
-                draw.multiline_text((yy, y_text), line, fill=(255, 255, 255), font=font, align="right")
-                im.save(edit_img_loc, quality=100)
-                y_text += (height * 1.1)
+            y_bot = (h / 2) + (height / 1.8 * len(lines))
+            y_top = (y_text / 1.2 - height) / (len(lines))
+            font = ImageFont.truetype(dir_font, 45)
+            draw.multiline_text((((w - width) / 2), y_text - (height / 1.8)), "qad3im", fill=(0, 0, 0), font=font,
+                                align="right")
+            im.save(edit_img_loc, quality=100)
+            xl = 0
+            xr = w - 80
+            box = (xl, y_top, xr, y_bot)  # left, top, right, bottom
+            cropped_image = im.crop(box)
+            cropped_image.save(edit_img_loc, quality=100)
             await ms.edit("يتم التحميل ...")
             await message.reply_chat_action("upload_photo")
             await ms.delete()
             await message.reply_to_message.reply_photo(edit_img_loc, caption="_")
 
+async def rqaa_W(client, message):
+    global edit_img_loc, dir_font, width, height, draw
+    userid = str(message.from_user["id"])
+    text = message.reply_to_message.text
+    dir_bg = "./bg"
+    bg = glob.glob(f"{dir_bg}/*.png")
+    for i in range(0, len(bg), 11):
+        chunk = bg[i:i + 11]
+        for photo in chunk:
+            ms = await message.reply_to_message.reply_text("يتم التحميل ....")
+            im = Image.open(photo)
+            print(im)
+            w, h = im.size
+            y_text = 100
+            lines = textwrap.wrap(text, width=30)
+            await ms.edit("يتم التحميل .....")
+            for line in lines:
+                dir_font = "./fonts/rqaa.ttf"
+                size_font = 100
+                font = ImageFont.truetype(dir_font, size_font)
+                width, height = font.getsize(line)
+                yy = (w - width) / 2
+                print(yy)
+                print(width, height)
+                print(len(lines))
+                if not os.path.isdir(f"./DOWNLOADS/{userid}"):
+                    os.makedirs(f"./DOWNLOADS/{userid}")
+                edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "qad3im.png"
+
+                draw = ImageDraw.Draw(im)
+                draw.multiline_text((yy, y_text), line, fill=(255, 255, 255), font=font, align="right")
+                im.save(edit_img_loc, quality=100)
+                y_text += height
+            y_bot = (h / 2) + (height / 1.8 * len(lines))
+            y_top = (y_text / 1.2 - height) / (len(lines))
+            font = ImageFont.truetype(dir_font, 45)
+            draw.multiline_text((((w - width) / 2), y_text - (height / 1.8)), "qad3im", fill=(0, 0, 0), font=font,
+                                align="right")
+            im.save(edit_img_loc, quality=100)
+            xl = 0
+            xr = w - 80
+            box = (xl, y_top, xr, y_bot)  # left, top, right, bottom
+            cropped_image = im.crop(box)
+            cropped_image.save(edit_img_loc, quality=100)
+            await ms.edit("يتم التحميل ...")
+            await message.reply_chat_action("upload_photo")
+            await ms.delete()
+            await message.reply_to_message.reply_photo(edit_img_loc, caption="_")
 
 async def rqaa2_W(client, message):
+    global edit_img_loc, dir_font, width, height, draw
     chat_id = message.chat.id
     userid = str(message.from_user["id"])
     text = message.reply_to_message.text
@@ -118,43 +109,41 @@ async def rqaa2_W(client, message):
     bg = glob.glob(f"{dir_bg}/*.png")
     for i in range(0, len(bg), 11):
         chunk = bg[i:i + 11]
-
         for photo in chunk:
             ms = await message.reply_to_message.reply_text("يتم التحميل ....")
-
             im = Image.open(photo)
             print(im)
             w, h = im.size
-            y_text = 180
-            x_text = w
+            y_text = 100
             lines = textwrap.wrap(text, width=30)
             await ms.edit("يتم التحميل .....")
             for line in lines:
                 dir_font = "./fonts/RQAA2.ttf"
                 size_font = 100
-                if len(lines) == 1:
-                    size_font = size_font + 50
-                    y_text = y_text + 100
-                else:
-                    size_font = 100
-
                 font = ImageFont.truetype(dir_font, size_font)
                 width, height = font.getsize(line)
                 yy = (w - width) / 2
-
                 print(yy)
                 print(width, height)
                 print(len(lines))
-
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
-                download_location = "./DOWNLOADS" + "/" + userid + "/" + userid + ".png"
                 edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "qad3im.png"
-
                 draw = ImageDraw.Draw(im)
                 draw.multiline_text((yy, y_text), line, fill=(255, 255, 255), font=font, align="center")
                 im.save(edit_img_loc, quality=100)
                 y_text += height
+            y_bot = (h / 2) + (height / 1.8 * len(lines))
+            y_top = (y_text / 1.2 - height) / (len(lines))
+            font = ImageFont.truetype(dir_font, 45)
+            draw.multiline_text((((w - width) / 2), y_text - (height / 1.8)), "qad3im", fill=(0, 0, 0), font=font,
+                                align="right")
+            im.save(edit_img_loc, quality=100)
+            xl = 0
+            xr = w - 80
+            box = (xl, y_top, xr, y_bot)  # left, top, right, bottom
+            cropped_image = im.crop(box)
+            cropped_image.save(edit_img_loc, quality=100)
             await ms.edit("يتم التحميل ...")
             await message.reply_chat_action("upload_photo")
             await ms.delete()
@@ -162,6 +151,7 @@ async def rqaa2_W(client, message):
 
 
 async def qran_W(client, message):
+    global edit_img_loc, dir_font, width, height
     chat_id = message.chat.id
     userid = str(message.from_user["id"])
     text = message.reply_to_message.text
@@ -172,33 +162,23 @@ async def qran_W(client, message):
 
         for photo in chunk:
             ms = await message.reply_to_message.reply_text("يتم التحميل ....")
-
             im = Image.open(photo)
             print(im)
             w, h = im.size
-            y_text = 180
-            x_text = w
+            y_text = 100
             lines = textwrap.wrap(text, width=30)
             await ms.edit("يتم التحميل .....")
             for line in lines:
                 dir_font = "./fonts/qraan.ttf"
                 size_font = 100
-                if len(lines) == 1:
-                    size_font = size_font + 50
-                else:
-                    size_font = 130
-
                 font = ImageFont.truetype(dir_font, size_font)
                 width, height = font.getsize(line)
                 yy = (w - width) / 2
-
                 print(yy)
                 print(width, height)
                 print(len(lines))
-
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
-                download_location = "./DOWNLOADS" + "/" + userid + "/" + userid + ".png"
                 edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "qad3im.png"
 
                 draw = ImageDraw.Draw(im)
@@ -212,6 +192,7 @@ async def qran_W(client, message):
 
 
 async def tbaa_W(client, message):
+    global edit_img_loc, dir_font, width, height, draw
     chat_id = message.chat.id
     userid = str(message.from_user["id"])
     text = message.reply_to_message.text
@@ -219,25 +200,18 @@ async def tbaa_W(client, message):
     bg = glob.glob(f"{dir_bg}/*.png")
     for i in range(0, len(bg), 11):
         chunk = bg[i:i + 11]
-
         for photo in chunk:
             ms = await message.reply_to_message.reply_text("يتم التحميل ....")
 
             im = Image.open(photo)
             print(im)
             w, h = im.size
-            y_text = 180
-            x_text = w
+            y_text = 100
             lines = textwrap.wrap(text, width=30)
             await ms.edit("يتم التحميل .....")
             for line in lines:
                 dir_font = "./fonts/tbaa.ttf"
                 size_font = 100
-                if len(lines) == 1:
-                    size_font = size_font + 50
-                    y_text = y_text + 60
-                else:
-                    size_font = 100
 
                 font = ImageFont.truetype(dir_font, size_font)
                 width, height = font.getsize(line)
@@ -249,13 +223,23 @@ async def tbaa_W(client, message):
 
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
-                download_location = "./DOWNLOADS" + "/" + userid + "/" + userid + ".png"
                 edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "qad3im.png"
 
                 draw = ImageDraw.Draw(im)
                 draw.multiline_text((yy, y_text), line, fill=(255, 255, 255), font=font, align="right")
                 im.save(edit_img_loc, quality=100)
                 y_text += height
+            y_bot = (h / 2) + (height / 1.8 * len(lines))
+            y_top = (y_text / 1.2 - height) / (len(lines))
+            font = ImageFont.truetype(dir_font, 45)
+            draw.multiline_text((((w - width) / 2), y_text - (height / 1.8)), "qad3im", fill=(0, 0, 0), font=font,
+                                align="right")
+            im.save(edit_img_loc, quality=100)
+            xl = 0
+            xr = w - 80
+            box = (xl, y_top, xr, y_bot)  # left, top, right, bottom
+            cropped_image = im.crop(box)
+            cropped_image.save(edit_img_loc, quality=100)
             await ms.edit("يتم التحميل ...")
             await message.reply_chat_action("upload_photo")
             await ms.delete()
@@ -263,6 +247,7 @@ async def tbaa_W(client, message):
 
 
 async def hsha_W(client, message):
+    global edit_img_loc, dir_font, width, height, draw
     chat_id = message.chat.id
     userid = str(message.from_user["id"])
     text = message.reply_to_message.text
@@ -277,19 +262,13 @@ async def hsha_W(client, message):
             im = Image.open(photo)
             print(im)
             w, h = im.size
-            y_text = 150
-            x_text = w
+            y_text = 80
+           
             lines = textwrap.wrap(text, width=25)
             await ms.edit("يتم التحميل .....")
             for line in lines:
                 dir_font = "./fonts/hsha.ttf"
-                size_font = 100
-                if len(lines) == 1:
-                    size_font = size_font + 50
-                    y_text = y_text + 100
-                else:
-                    size_font = 130
-
+                size_font = 130
                 font = ImageFont.truetype(dir_font, size_font)
                 width, height = font.getsize(line)
                 yy = (w - width) / 2
@@ -300,13 +279,24 @@ async def hsha_W(client, message):
 
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
-                download_location = "./DOWNLOADS" + "/" + userid + "/" + userid + ".png"
+                
                 edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "qad3im.png"
 
                 draw = ImageDraw.Draw(im)
                 draw.multiline_text((yy, y_text), line, fill=(255, 255, 255), font=font, align="right")
                 im.save(edit_img_loc, quality=100)
                 y_text += height
+            y_bot = (h / 2) + (height / 1.8 * len(lines))
+            y_top = (y_text / 1.2 - height) / (len(lines))
+            font = ImageFont.truetype(dir_font, 45)
+            draw.multiline_text((((w - width) / 2), y_text - (height / 1.8)), "qad3im", fill=(0, 0, 0), font=font,
+                                align="right")
+            im.save(edit_img_loc, quality=100)
+            xl = 0
+            xr = w - 80
+            box = (xl, y_top, xr, y_bot)  # left, top, right, bottom
+            cropped_image = im.crop(box)
+            cropped_image.save(edit_img_loc, quality=100)
             await ms.edit("يتم التحميل ...")
             await message.reply_chat_action("upload_photo")
             await ms.delete()
@@ -314,7 +304,7 @@ async def hsha_W(client, message):
 
 
 async def qyass_W(client, message):
-    chat_id = message.chat.id
+    global edit_img_loc, dir_font, width, height, draw
     userid = str(message.from_user["id"])
     text = message.reply_to_message.text
     dir_bg = "./bg"
@@ -328,19 +318,12 @@ async def qyass_W(client, message):
             im = Image.open(photo)
             print(im)
             w, h = im.size
-            y_text = 180
-            x_text = w
+            y_text = 100
             lines = textwrap.wrap(text, width=30)
             await ms.edit("يتم التحميل .....")
             for line in lines:
                 dir_font = "./fonts/qyasee.ttf"
-                size_font = 100
-                if len(lines) == 1:
-                    size_font = size_font + 60
-                    y_text = y_text + 90
-                else:
-                    size_font = 140
-
+                size_font = 140
                 font = ImageFont.truetype(dir_font, size_font)
                 width, height = font.getsize(line)
                 yy = (w - width) / 2
@@ -358,6 +341,17 @@ async def qyass_W(client, message):
                 draw.multiline_text((yy, y_text), line, fill=(255, 255, 255), font=font, align="right")
                 im.save(edit_img_loc, quality=100)
                 y_text += height
+            y_bot = (h / 2) + (height / 1.8 * len(lines))
+            y_top = (y_text / 1.2 - height) / (len(lines))
+            font = ImageFont.truetype(dir_font, 45)
+            draw.multiline_text((((w - width) / 2), y_text - (height / 1.8)), "qad3im", fill=(0, 0, 0), font=font,
+                                align="right")
+            im.save(edit_img_loc, quality=100)
+            xl = 0
+            xr = w - 80
+            box = (xl, y_top, xr, y_bot)  # left, top, right, bottom
+            cropped_image = im.crop(box)
+            cropped_image.save(edit_img_loc, quality=100)
             await ms.edit("يتم التحميل ...")
             await message.reply_chat_action("upload_photo")
             await ms.delete()
@@ -365,6 +359,7 @@ async def qyass_W(client, message):
 
 
 async def qyass2_W(client, message):
+    global edit_img_loc, dir_font, width, height, draw
     chat_id = message.chat.id
     userid = str(message.from_user["id"])
     text = message.reply_to_message.text
@@ -379,18 +374,12 @@ async def qyass2_W(client, message):
             im = Image.open(photo)
             print(im)
             w, h = im.size
-            y_text = 60
-            x_text = w
+            y_text = 40
             lines = textwrap.wrap(text, width=30)
             await ms.edit("يتم التحميل .....")
             for line in lines:
                 dir_font = "./fonts/qyasee2.ttf"
                 size_font = 120
-                if len(lines) == 1:
-                    size_font = size_font + 50
-                    y_text = y_text + 100
-                else:
-                    size_font = 130
 
                 font = ImageFont.truetype(dir_font, size_font)
                 width, height = font.getsize(line)
@@ -402,13 +391,23 @@ async def qyass2_W(client, message):
 
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
-                download_location = "./DOWNLOADS" + "/" + userid + "/" + userid + ".png"
                 edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "qad3im.png"
 
                 draw = ImageDraw.Draw(im)
                 draw.multiline_text((yy, y_text), line, fill=(255, 255, 255), font=font, align="right")
                 im.save(edit_img_loc, quality=100)
                 y_text += height
+            y_bot = (h / 2) + (height / 1.8 * len(lines))
+            y_top = (y_text / 1.2 - height) / (len(lines))
+            font = ImageFont.truetype(dir_font, 45)
+            draw.multiline_text((((w - width) / 2), y_text - (height / 1.8)), "qad3im", fill=(0, 0, 0), font=font,
+                                align="right")
+            im.save(edit_img_loc, quality=100)
+            xl = 0
+            xr = w - 80
+            box = (xl, y_top, xr, y_bot)  # left, top, right, bottom
+            cropped_image = im.crop(box)
+            cropped_image.save(edit_img_loc, quality=100)
             await ms.edit("يتم التحميل ...")
             await message.reply_chat_action("upload_photo")
             await ms.delete()
@@ -416,7 +415,7 @@ async def qyass2_W(client, message):
 
 
 async def hur_W(client, message):
-    chat_id = message.chat.id
+    global edit_img_loc, dir_font, width, height, draw
     userid = str(message.from_user["id"])
     text = message.reply_to_message.text
     dir_bg = "./bg"
@@ -430,18 +429,12 @@ async def hur_W(client, message):
             im = Image.open(photo)
             print(im)
             w, h = im.size
-            y_text = 180
-            x_text = w
+            y_text = 100
             lines = textwrap.wrap(text, width=30)
             await ms.edit("يتم التحميل .....")
             for line in lines:
                 dir_font = "./fonts/hur.ttf"
                 size_font = 100
-                if len(lines) == 1:
-                    size_font = size_font + 60
-                    y_text = y_text + 80
-                else:
-                    size_font = 140
 
                 font = ImageFont.truetype(dir_font, size_font)
                 width, height = font.getsize(line)
@@ -460,6 +453,17 @@ async def hur_W(client, message):
                 draw.multiline_text((yy, y_text), line, fill=(255, 255, 255), font=font, align="right")
                 im.save(edit_img_loc, quality=100)
                 y_text += height
+            y_bot = (h / 2) + (height / 1.8 * len(lines))
+            y_top = (y_text / 1.2 - height) / (len(lines))
+            font = ImageFont.truetype(dir_font, 45)
+            draw.multiline_text((((w - width) / 2), y_text - (height / 1.8)), "qad3im", fill=(0, 0, 0), font=font,
+                                align="right")
+            im.save(edit_img_loc, quality=100)
+            xl = 0
+            xr = w - 80
+            box = (xl, y_top, xr, y_bot)  # left, top, right, bottom
+            cropped_image = im.crop(box)
+            cropped_image.save(edit_img_loc, quality=100)
             await ms.edit("يتم التحميل ...")
             await message.reply_chat_action("upload_photo")
             await ms.delete()
@@ -467,6 +471,7 @@ async def hur_W(client, message):
 
 
 async def hur2_W(client, message):
+    global edit_img_loc, dir_font, width, height, draw
     chat_id = message.chat.id
     userid = str(message.from_user["id"])
     text = message.reply_to_message.text
@@ -481,18 +486,12 @@ async def hur2_W(client, message):
             im = Image.open(photo)
             print(im)
             w, h = im.size
-            y_text = 120
-            x_text = w
+            y_text = 90
             lines = textwrap.wrap(text, width=30)
             await ms.edit("يتم التحميل .....")
             for line in lines:
                 dir_font = "./fonts/hur2.ttf"
                 size_font = 100
-                if len(lines) == 1:
-                    size_font = size_font + 50
-                    y_text = y_text + 100
-                else:
-                    size_font = 100 + 30
 
                 font = ImageFont.truetype(dir_font, size_font)
                 width, height = font.getsize(line)
@@ -504,21 +503,30 @@ async def hur2_W(client, message):
 
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
-                download_location = "./DOWNLOADS" + "/" + userid + "/" + userid + ".png"
                 edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "qad3im.png"
 
                 draw = ImageDraw.Draw(im)
                 draw.multiline_text((yy, y_text), line, fill=(255, 255, 255), font=font, align="right")
                 im.save(edit_img_loc, quality=100)
                 y_text += height
+            y_bot = (h / 2) + (height / 1.8 * len(lines))
+            y_top = (y_text / 1.2 - height) / (len(lines))
+            font = ImageFont.truetype(dir_font, 45)
+            draw.multiline_text((((w - width) / 2), y_text - (height / 1.8)), "qad3im", fill=(0, 0, 0), font=font,
+                                align="right")
+            im.save(edit_img_loc, quality=100)
+            xl = 0
+            xr = w - 80
+            box = (xl, y_top, xr, y_bot)  # left, top, right, bottom
+            cropped_image = im.crop(box)
+            cropped_image.save(edit_img_loc, quality=100)
             await ms.edit("يتم التحميل ...")
             await message.reply_chat_action("upload_photo")
             await ms.delete()
             await message.reply_to_message.reply_photo(edit_img_loc, caption="_")
 
-
 async def alanat_W(client, message):
-    chat_id = message.chat.id
+    global edit_img_loc, dir_font, width, height, draw
     userid = str(message.from_user["id"])
     text = message.reply_to_message.text
     dir_bg = "./bg"
@@ -532,17 +540,13 @@ async def alanat_W(client, message):
             im = Image.open(photo)
             print(im)
             w, h = im.size
-            y_text = 180
+            y_text = 100
             x_text = w
             lines = textwrap.wrap(text, width=30)
             await ms.edit("يتم التحميل .....")
             for line in lines:
                 dir_font = "./fonts/alanat.ttf"
                 size_font = 100
-                if len(lines) == 1:
-                    size_font = size_font + 50
-                else:
-                    size_font = 100
 
                 font = ImageFont.truetype(dir_font, size_font)
                 width, height = font.getsize(line)
@@ -554,13 +558,23 @@ async def alanat_W(client, message):
 
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
-                download_location = "./DOWNLOADS" + "/" + userid + "/" + userid + ".png"
                 edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "qad3im.png"
 
                 draw = ImageDraw.Draw(im)
                 draw.multiline_text((yy, y_text), line, fill=(255, 255, 255), font=font, align="right")
                 im.save(edit_img_loc, quality=100)
                 y_text += height
+            y_bot = (h / 2) + (height / 1.8 * len(lines))
+            y_top = (y_text / 1.2 - height) / (len(lines))
+            font = ImageFont.truetype(dir_font, 45)
+            draw.multiline_text((((w - width) / 2), y_text - (height / 1.8)), "qad3im", fill=(0, 0, 0), font=font,
+                                align="right")
+            im.save(edit_img_loc, quality=100)
+            xl = 0
+            xr = w - 80
+            box = (xl, y_top, xr, y_bot)  # left, top, right, bottom
+            cropped_image = im.crop(box)
+            cropped_image.save(edit_img_loc, quality=100)
             await ms.edit("يتم التحميل ...")
             await message.reply_chat_action("upload_photo")
             await ms.delete()
@@ -568,7 +582,7 @@ async def alanat_W(client, message):
 
 
 async def alanat2_W(client, message):
-    chat_id = message.chat.id
+    global edit_img_loc, dir_font, width, height, draw
     userid = str(message.from_user["id"])
     text = message.reply_to_message.text
     dir_bg = "./bg"
@@ -582,18 +596,13 @@ async def alanat2_W(client, message):
             im = Image.open(photo)
             print(im)
             w, h = im.size
-            y_text = 110
-            x_text = w
+            y_text = 80
+
             lines = textwrap.wrap(text, width=30)
             await ms.edit("يتم التحميل .....")
             for line in lines:
                 dir_font = "./fonts/alanat2.ttf"
                 size_font = 100
-                if len(lines) == 1:
-                    size_font = size_font + 70
-                    y_text = y_text + 90
-                else:
-                    size_font = 150
 
                 font = ImageFont.truetype(dir_font, size_font)
                 width, height = font.getsize(line)
@@ -605,13 +614,24 @@ async def alanat2_W(client, message):
 
                 if not os.path.isdir(f"./DOWNLOADS/{userid}"):
                     os.makedirs(f"./DOWNLOADS/{userid}")
-                download_location = "./DOWNLOADS" + "/" + userid + "/" + userid + ".png"
+
                 edit_img_loc = "./DOWNLOADS" + "/" + userid + "/" + "qad3im.png"
 
                 draw = ImageDraw.Draw(im)
                 draw.multiline_text((yy, y_text), line, fill=(255, 255, 255), font=font, align="center")
                 im.save(edit_img_loc, quality=100)
                 y_text += height
+            y_bot = (h / 2) + (height / 1.8 * len(lines))
+            y_top = (y_text / 1.2 - height) / (len(lines))
+            font = ImageFont.truetype(dir_font, 45)
+            draw.multiline_text((((w - width) / 2), y_text - (height / 1.8)), "qad3im", fill=(0, 0, 0), font=font,
+                                align="right")
+            im.save(edit_img_loc, quality=100)
+            xl = 0
+            xr = w - 80
+            box = (xl, y_top, xr, y_bot)  # left, top, right, bottom
+            cropped_image = im.crop(box)
+            cropped_image.save(edit_img_loc, quality=100)
             await ms.edit("يتم التحميل ...")
             await message.reply_chat_action("upload_photo")
             await ms.delete()
