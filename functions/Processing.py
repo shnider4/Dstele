@@ -5,7 +5,6 @@ from PIL import Image, ImageDraw, ImageFont
 from pyrogram import Client, filters
 
 async def edit1(client:Client,dir_bg,dir_font,color_t,size_font, message):
-    global edit_img_loc, width, height, draw
     chat_id = message.chat.id
     userid = str(message.reply_to_message.from_user["id"])
     text = message.reply_to_message.text
