@@ -8,43 +8,6 @@ from pyrogram import Client, filters
 from pyrogram.errors import UserNotParticipant, UserBannedInChannel
 
 # CH force Sbs
-update_channel = "-1001152587608"
-
-
-async def chack(client, message):
-    user_id = message.from_user["id"]
-    user_name = message.from_user["first_name"]
-
-    if update_channel:
-        try:
-            user = await client.get_chat_member(update_channel, user_id)
-
-            if user.status in ["member", "creator", "administrator"]:
-                await message.reply_text(
-                    f"اهلا بك عزيزي {user_name} \n\n يمنكنك انشاء منشورات منسقة وجميلة \n\n فقط ارسلي نص (عبارة - شعر - اقتباس ) ")
-                return
-        except UserNotParticipant:
-            link = link = "t.me/qad3im"
-            # await update.reply_text(f"Join @{update_channel} To Use Me")
-            await message.reply_text(
-                text="**لطفا انضم في القناة حتى تستخدمني  😎 🤭**",
-                reply_markup=InlineKeyboardMarkup([
-                    [InlineKeyboardButton(text="انضمام الان ✅ ", url=link)]
-                ])
-            )
-            return
-        except Exception:
-            await message.reply_text("حدث خطا ما راسل الدعم  @qad3im ")
-            return
-
-
-@app.on_message(filters.command(["start"]) & filters.private)
-async def start(client: Client, message: Message):
-    try:
-        await chack(client, message)
-    except Exception:
-        pass
-
 
 async def first(client, message):
     try:
@@ -102,18 +65,35 @@ async def first(client, message):
                 return
 
 
+
+
+
+
+
+
+
+
+
+
+
 @app.on_message(filters.text & filters.private)
 async def chack(client, message):
     user_id = message.from_user["id"]
     user_name = message.from_user["first_name"]
+    update_channel = "-1001152587608"
+    text = message.text
 
     if update_channel:
         try:
             user = await client.get_chat_member(update_channel, user_id)
 
             if user.status in ["member", "creator", "administrator"]:
-                await first(client, message)
-                return
+                if text != "/start":
+                    await first(client, message)
+                else:
+                    await message.reply_text(
+                        f"اهلا بك عزيزي {user_name} \n\n يمنكنك انشاء منشورات منسقة وجميلة \n\n فقط ارسلي نص (عبارة - شعر - اقتباس ) ")
+                    return 
         except UserNotParticipant:
             link = link = "t.me/qad3im"
             # await update.reply_text(f"Join @{update_channel} To Use Me")
@@ -127,3 +107,38 @@ async def chack(client, message):
         except Exception:
             await message.reply_text("حدث خطا ما راسل الدعم  @qad3im ")
             return
+
+
+
+
+#
+# @app.on_message(filters.text & filters.private)
+# async def chack(client, message):
+#     user_id = message.from_user["id"]
+#     user_name = message.from_user["first_name"]
+#     text = message.text
+#     update_channel = "-1001152587608"
+#
+#     if text =="/start" :
+#
+#         await chack(client, message)
+#     else:
+#         try:
+#             user = await client.get_chat_member(update_channel, user_id)
+#
+#             if user.status in ["member", "creator", "administrator"]:
+#                 await first(client, message)
+#                 return
+#         except UserNotParticipant:
+#             link = link = "t.me/qad3im"
+#             # await update.reply_text(f"Join @{update_channel} To Use Me")
+#             await message.reply_text(
+#                 text="**لطفا انضم في القناة حتى تستخدمني  😎 🤭**",
+#                 reply_markup=InlineKeyboardMarkup([
+#                     [InlineKeyboardButton(text="انضمام الان ✅ ", url=link)]
+#                 ])
+#             )
+#             return
+#         except Exception:
+#             await message.reply_text("حدث خطا ما راسل الدعم  @qad3im ")
+#             return
