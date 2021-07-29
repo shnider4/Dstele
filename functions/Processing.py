@@ -19,13 +19,15 @@ async def edit1(client:Client,dir_bg,dir_font,color_t,size_font, message):
             im = Image.open(photo)
             print(im)
             w, h = im.size
-            y_text = 390
+            y_text = 370
             lines = textwrap.wrap(text, width=40)
             for line in lines:
                 # dir_font = "./fonts/Amiri.ttf"
                 # size_font = 105
                 font = ImageFont.truetype(dir_font, size_font)
                 width, height = font.getsize(line)
+                if len (lines) > 1:
+                    y_text =y_text -70
                 yy = (w - width) / 2
                 print(yy)
                 print(width, height)
