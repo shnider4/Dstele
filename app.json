@@ -13,10 +13,6 @@
         "BOT_TOKEN": {
             "description": "Get this value by making a bot from @BotFather.",
             "required": true
-        },
-        "OWNER_ID": {
-            "description": "Your telegram user id.",
-            "required": true
         }
     },
     "buildpacks": [
