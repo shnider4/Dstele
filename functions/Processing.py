@@ -19,7 +19,7 @@ async def edit1(client:Client,dir_bg,dir_font,color_t,size_font, message):
             im = Image.open(photo)
             print(im)
             w, h = im.size
-            y_text = 100
+            y_text = 390
             lines = textwrap.wrap(text, width=40)
             for line in lines:
                 # dir_font = "./fonts/Amiri.ttf"
@@ -39,8 +39,8 @@ async def edit1(client:Client,dir_bg,dir_font,color_t,size_font, message):
                 im.save(edit_img_loc, quality=100)
                 y_text += height
             ms = await client.send_message(chat_id, "يتم التحميل ....")
-            y_bot = (h / 1.8) + (height / 1.8 * len(lines))
-            y_top = (y_text / 1.5 - height) / (len(lines))
+            y_top = (y_text  -  2*height) / (len(lines))
+            y_bot = h - (y_top/2)
             dir_fot = "./fonts/Amiri.ttf"
             fot = ImageFont.truetype(dir_fot, 40)
             draw.multiline_text((((w - width) /2.4), y_text - 4), "qad3im", fill=color_t, font=fot,
