@@ -1,13 +1,9 @@
 import os
-import time
-
 from __main__ import app
-
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
-from pyrogram import Client, filters
-from pyrogram.errors import UserNotParticipant, UserBannedInChannel
-
-# CH force Sbs
+from config import OWNER_ID
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram import filters
+from pyrogram.errors import UserNotParticipant
 
 async def first(client, message):
     try:
@@ -65,17 +61,6 @@ async def first(client, message):
                 return
 
 
-
-
-
-
-
-
-
-
-
-
-
 @app.on_message(filters.text & filters.private)
 async def chack(client, message):
     user_id = message.from_user["id"]
@@ -88,14 +73,27 @@ async def chack(client, message):
             user = await client.get_chat_member(update_channel, user_id)
 
             if user.status in ["member", "creator", "administrator"]:
-                if text != "/start":
+                if text != "/start" and user_id in OWNER_ID:
                     await first(client, message)
-                else:
+                elif text == "/start" and user_id in OWNER_ID:
                     await message.reply_text(
                         f"اهلا بك عزيزي {user_name} \n\n يمنكنك انشاء منشورات منسقة وجميلة \n\n فقط ارسلي نص (عبارة - شعر - اقتباس ) ")
-                    return 
+                else:
+                    await message.reply_text(
+                        "🚸| عذرا عزيزي هذة النسخة مدفوعة $$  \n🔰| للحصول على نسختك الخاصة من البوت 🤖⚡️ \n\n🔰| راسل المطور 👨🏻‍💻 "
+                        , reply_markup=InlineKeyboardMarkup(
+                            [
+                                [
+                                    InlineKeyboardButton(
+                                        text="  Developer ‍💻   ", url="https://t.me/shnider_bots"
+                                    )
+                                ]
+                            ]
+                        )
+                        )
+                    return
         except UserNotParticipant:
-            link = link = "t.me/qad3im"
+            link = "t.me/qad3im"
             # await update.reply_text(f"Join @{update_channel} To Use Me")
             await message.reply_text(
                 text="**لطفا انضم في القناة حتى تستخدمني  😎 🤭**",
@@ -105,40 +103,5 @@ async def chack(client, message):
             )
             return
         except Exception:
-            await message.reply_text("حدث خطا ما راسل الدعم  @qad3im ")
+            await message.reply_text("حدث خطا ما راسل الدعم  @shnider_bots ")
             return
-
-
-
-
-#
-# @app.on_message(filters.text & filters.private)
-# async def chack(client, message):
-#     user_id = message.from_user["id"]
-#     user_name = message.from_user["first_name"]
-#     text = message.text
-#     update_channel = "-1001152587608"
-#
-#     if text =="/start" :
-#
-#         await chack(client, message)
-#     else:
-#         try:
-#             user = await client.get_chat_member(update_channel, user_id)
-#
-#             if user.status in ["member", "creator", "administrator"]:
-#                 await first(client, message)
-#                 return
-#         except UserNotParticipant:
-#             link = link = "t.me/qad3im"
-#             # await update.reply_text(f"Join @{update_channel} To Use Me")
-#             await message.reply_text(
-#                 text="**لطفا انضم في القناة حتى تستخدمني  😎 🤭**",
-#                 reply_markup=InlineKeyboardMarkup([
-#                     [InlineKeyboardButton(text="انضمام الان ✅ ", url=link)]
-#                 ])
-#             )
-#             return
-#         except Exception:
-#             await message.reply_text("حدث خطا ما راسل الدعم  @qad3im ")
-#             return
