@@ -45,7 +45,7 @@ async def edit1(client:Client,dir_bg,dir_font,color_t,size_font, message):
             y_bot = h - (y_top/2)
             dir_fot = "./fonts/Amiri.ttf"
             fot = ImageFont.truetype(dir_fot, 40)
-            draw.multiline_text((((w - width) /2.4), y_text - 4), "ABDSH96", fill=color_t, font=fot,
+            draw.multiline_text((((w - width) /2.4), y_text - 4), "qad3im", fill=color_t, font=fot,
                                 align="right")
             await ms.edit("يتم التحميل ...")
 
