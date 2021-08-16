@@ -179,7 +179,7 @@ async def alanat_WXX(client, message):
 
 async def alanat2_BXX(client, message):
     dir_bg = "./bg2"
-    dir_font = "./fonts/alanat2.ttf"
+    dir_font = "./fonts/add.ttf"
     color_t = (250, 250, 250)
     size_font = 70
     await edit1(client, dir_bg, dir_font, color_t, size_font, message)
@@ -187,7 +187,7 @@ async def alanat2_BXX(client, message):
 
 async def alanat2_WXX(client, message):
     dir_bg = "./bg2"
-    dir_font = "./fonts/alanat2.ttf"
+    dir_font = "./fonts/add.ttf"
     color_t = (250, 250, 250)
     size_font = 70
     await edit1(client, dir_bg, dir_font, color_t, size_font, message)
