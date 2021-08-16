@@ -223,7 +223,7 @@ async def alanat_WX(client, message):
 
 async def alanat2_BX(client, message):
     dir_bg = "./bg1"
-    dir_font = "./fonts/alanat2.ttf"
+    dir_font = "./fonts/add.ttf"
     color_t = (250, 250, 250)
     size_font = 70
     codx = "alanat2_BXX"
